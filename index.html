@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="index.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="display: inline-block;" onclick="onClickStartButton()">
+        <img src="./assets/img/211614_down_b_arrow_icon.svg" alt="arrow">
+        <canvas id="canvas" width="1100" height="1100"></canvas>
+        <h2 id="canvas-result"></h2>
+    </div>
+
+    <button onclick="window.location.reload()">Reset</button>
+
+    <script src='./js/Winwheel.min.js'></script>
+    <script src='./js/main.js'></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+</body>
+</html>
