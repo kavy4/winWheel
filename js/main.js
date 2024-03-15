@@ -1,5 +1,4 @@
 const h2result = document.getElementById('canvas-result')
-console.log(h2result)
 
 const fullNames = [
     'Балянова Арина',
@@ -28,56 +27,56 @@ const fullNames = [
 
 const data = fullNames.map((element, index) => ({text: element, fillStyle: index % 2 == 0 ? '#60BA97' : '#FFFFF'}))
 
-// const data = [
-//     {
-//         text: 'text 1'
-//     },
+const onFinishWheel = result => {
+    data.map((item, index) => {
+        if (item.text == result.text) {
+            data.splice(index, 1)
+        }
+    })
 
-//     {
-//         text: 'text 2'
-//     },
+    h2result.innerText = result.text
+}
 
-//     {
-//         text: 'text 3'
-//     },
+let theWheel = null
 
-//     {
-//         text: 'text 4'
-//     },
+const CreateWheel = () => {
+    theWheel = new Winwheel({
+        numSegments : data.length,
+        outerRadius : 530,
+        textFontSize : 32,
+        innerRadius: 54,
+        textMargin: 38,
+        textFillStyle: '#FFFFFF',
+        textLineWidth: '1',
+        segments: data,
+        animation:
+        {
+            type: 'spinToStop',
+            yoyo: true,
+            direction: 'clockwise',
+            duration: 8,
+            spins: 2,
+            callbackFinished: result => onFinishWheel(result)
+        },
+    
+        pointerGuide:
+        {
+            display: true,
+            strokeStyle: 'black',
+            lineWidth: 4
+        }
+    })
+}
 
-//     {
-//         text: 'text 5'
-//     }
-// ]
-
-const theWheel = new Winwheel({
-    numSegments : data.length,
-    outerRadius : 530,
-    textFontSize : 32,
-    innerRadius: 54,
-    textMargin: 38,
-    textFillStyle: '#FFFFFF',
-    textLineWidth: '1',
-    segments: data,
-    animation:
-    {
-        type: 'spinToStop',
-        yoyo: true,
-        direction: 'clockwise',
-        duration: 14,
-        spins: 4,
-        callbackFinished: result => h2result.textContent = result.text
-    },
-
-    pointerGuide:
-    {
-        display: true,
-        strokeStyle: 'black',
-        lineWidth: 4
-    }
-})
+CreateWheel()
 
 const onClickStartButton = () => {
+    try {
+        theWheel.clearCanvas()
+    } catch (error) {
+        console.log(error)
+    }
+    CreateWheel()
     theWheel.startAnimation()
 }
 
