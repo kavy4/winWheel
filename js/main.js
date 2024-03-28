@@ -25,7 +25,7 @@ const fullNames = [
     'Шопин Олег'
 ]
 
-const data = fullNames.map((element, index) => ({text: element, fillStyle: index % 2 == 0 ? '#60BA97' : '#FFFFF'}))
+const data = fullNames.map((element, index) => ({text: `${index + 1}. ${element}`, fillStyle: index % 2 == 0 ? '#60BA97' : '#FFFFF'}))
 
 const onFinishWheel = result => {
     data.map((item, index) => {
@@ -42,25 +42,23 @@ let theWheel = null
 const CreateWheel = () => {
     theWheel = new Winwheel({
         numSegments : data.length,
-        outerRadius : 530,
+        outerRadius : 600,
         textFontSize : 32,
         innerRadius: 54,
         textMargin: 38,
         textFillStyle: '#FFFFFF',
         textLineWidth: '1',
         segments: data,
-        animation:
-        {
+        animation: {
             type: 'spinToStop',
             yoyo: true,
             direction: 'clockwise',
             duration: 8,
-            spins: 2,
+            spins: 1.5,
             callbackFinished: result => onFinishWheel(result)
         },
     
-        pointerGuide:
-        {
+        pointerGuide: {
             display: true,
             strokeStyle: 'black',
             lineWidth: 4
